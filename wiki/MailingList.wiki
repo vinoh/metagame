@@ -1,4 +1,4 @@
-#summary Mailing List
+#summary Discussing Meta-Game development
 
 Discuss and participate in the development of Meta-Game by joining the development mailing list: [mailto:metagame-devel@googlegroups.com metagame-devel@googlegroups.com]
 
