@@ -12,7 +12,7 @@ This document serves as reference to define the [Protocol].
  * Handles maps connected together -- Maps may be across different servers
  * Maps can be equipped with non-movable entities
  * Allows player entities, aka clients, to enter the world
- * Informs players about entities they can see, giving them position, orientation (and collision mesh on request).
+ * Informs players about entities they can see, giving them position, orientation, and meta-information on request.
  * Handles movement (walking, running), collisions, trade, shops, talking, interacting with non-movable entities
  * Can query a database for item information.
  * Maintains and saves the state of the players in a database.
@@ -34,7 +34,7 @@ A client may connect multiple players at once within a single socket to make it 
 
 
 == Players ==
-A player is an entity that has a field of view, a name, an inventory, attributes and activable skills.
+A player is an entity that has a collision mesh, a field of view, a name, an inventory, attributes and activable skills organized in categories and which may have a value attached to them (such as a level).
 
 Some items are also equippable and usable by a player.
 
@@ -56,3 +56,15 @@ Players will only be informed about entities which are within their field of vie
 It is however possible to set a 360° field of view, in that case one can see all over himself but not behind other entities or elements of the map.
 
 See [Visibility] for discussion of how to implement this.
+
+
+
+= Client side =
+ * A library for easy coding of clients, NPCs and bots
+ * A reference client
+
+== Reference client ==
+ * Powerful scripting support, so that combat can be partially automated by the player, making it more based on strategy than speed
+ * Simple 3D rendering
+ * Complete GUI and command-line interface giving access to all protocol commands
+ * Various basic meshes and textures to make it not-too-plain
