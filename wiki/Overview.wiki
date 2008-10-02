@@ -48,7 +48,7 @@ Items are movable entities that can be dropped, picked-up, possibly equipped and
 
 Items can only be created by players with certain privileges.
 
-Items have a collision mesh (used when on the ground), a name, and a list of descriptions. Their effects (carried/equipped/used) are scripted.
+Items have a collision mesh (used when on the ground), a name, and a list of key/value pairs. Their effects (carried/equipped/used) are scripted.
 
 == Visibility ==
 Players will only be informed about entities which are within their field of view. This was chosen so that role-playing and combat could be more realistic, preventing players from making use of information they shouldn't have.
