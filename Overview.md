@@ -1,0 +1,68 @@
+The game engine aims at being as generic as possible, so that various kinds of games can be made by tuning the rules. For that reason what can be done is minimalistic.
+
+The protocol is to be as simple as possible so that it can be fairly easy to write a bot or the like. It also aims at restricting what can be done from players.
+
+This document serves as reference to define the [Protocol](Protocol.md).
+
+# Server side #
+
+## Jobs ##
+  * Handles maps connected together -- Maps may be across different servers
+  * Maps can be equipped with non-movable entities
+  * Allows player entities, aka clients, to enter the world
+  * Informs players about entities they can see, giving them position, orientation, and meta-information on request.
+  * Handles movement (walking, running), collisions, trade, shops, talking, interacting with non-movable entities
+  * Can query a database for item information.
+  * Maintains and saves the state of the players in a database.
+  * Combat and skills handled by scripted rules.
+  * Character creation done by another, rules-specific, application.
+
+
+## Scalability ##
+The server should be able to scale to host modest online games. Really massive online games isn't the first goal of the engine.
+
+
+## NPCs ##
+NPCs are just like players. That is based on the fact that an NPC shouldn't be able to do more than a regular player, it's just a character of the game that happens to be computer-controlled.
+
+That way NPCs can also be independent and focus on AI.
+
+
+A client may connect multiple players at once within a single socket to make it easier to put numerous NPCs on the same machine.
+
+
+## Players ##
+A player is an entity that has a collision mesh, a field of view, a name, an inventory, attributes and activable skills organized in categories and which may have a value attached to them (such as a level).
+
+Some items are also equippable and usable by a player.
+
+He may pick-up/drop/use/equip items, move, run, talk, offer a trade to another player, set up a shop, and activate non-movable entities.
+
+Players may also execute actions, which have no effect on the server but that may be interpreted in the client in some way, such as taking a stance.
+
+
+## Items ##
+Items are movable entities that can be dropped, picked-up, possibly equipped and used.
+
+Items can only be created by players with certain privileges.
+
+Items have a collision mesh (used when on the ground), a name, and a list of key/value pairs. Their effects (carried/equipped/used) are scripted.
+
+## Visibility ##
+Players will only be informed about entities which are within their field of view. This was chosen so that role-playing and combat could be more realistic, preventing players from making use of information they shouldn't have.
+
+It is however possible to set a 360° field of view, in that case one can see all over himself but not behind other entities or elements of the map.
+
+See [Visibility](Visibility.md) for discussion of how to implement this.
+
+
+
+# Client side #
+  * A library for easy coding of clients, NPCs and bots
+  * A reference client
+
+## Reference client ##
+  * Powerful scripting support, so that combat can be partially automated by the player, making it more based on strategy than speed
+  * Simple 3D rendering
+  * Complete GUI and command-line interface giving access to all protocol commands
+  * Various basic meshes and textures to make it not-too-plain
